@@ -16,28 +16,29 @@ const MainSite = () => {
     <>
       <NavbarLayout />
       <Container>
+        <hr />
         <Row>
           <Col lg="4" md="4" sm="12" xs="12">
-            <Card body inverse color="success">
+            <Card body>
               <CardTitle tag="h5">Ingredients</CardTitle>
               <CardText>Here you can change your ingredients</CardText>
               <Button onClick={() => history.push("/ingredients")}>
-                Button
+                Let`s go
               </Button>
             </Card>
           </Col>
           <Col lg="4" md="4" sm="12" xs="12">
-            <Card body inverse color="success">
+            <Card body>
               <CardTitle tag="h5">Pizza</CardTitle>
               <CardText>Here you can order your pizza</CardText>
               <Button onClick={() => history.push("/order/pizza")}>
-                Button
+                Let`s go
               </Button>
             </Card>
           </Col>
           <Col lg="4" md="4" sm="12" xs="12">
             {" "}
-            <Card body inverse color="success">
+            <Card body>
               <CardTitle tag="h5">Calzone</CardTitle>
               <CardText>here you can order your calzone</CardText>
               <Button onClick={() => history.push("/order/calzone")}>
