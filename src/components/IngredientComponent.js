@@ -11,18 +11,22 @@ import {
   Label,
   Input,
 } from "reactstrap";
-import { IngredientsContext } from "../providers/IngredientProvider";
+import {
+  IngredientsContext,
+  ADD_INGREDIENT,
+} from "../providers/IngredientProvider";
 import IngredientItem from "./IngredientItem";
 
 const IngredientComponent = () => {
-  const { ingredients, AddIngredient } = useContext(IngredientsContext);
+  const [state, dispatch] = useContext(IngredientsContext);
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
   const [name, setName] = useState("");
   const [category, setCategory] = useState("");
+
   function renderIngredients() {
-    let arr = ingredients.map((item, index) => {
+    let arr = state.ingredients.map((item, index) => {
       return (
         <Col
           lg="3"
@@ -36,6 +40,7 @@ const IngredientComponent = () => {
             name={item.name}
             category={item.category}
             index={index}
+            mode="edit"
           />
         </Col>
       );
@@ -50,7 +55,6 @@ const IngredientComponent = () => {
         <Row>
           <Col>
             <h1>Ingredients</h1>
-
             <Button
               color="primary"
               onClick={toggle}
@@ -82,8 +86,12 @@ const IngredientComponent = () => {
                 </FormGroup>
                 <Button
                   color="success"
-                  onClick={() => {
-                    AddIngredient(name, category);
+                  onClick={(e) => {
+                    dispatch({
+                      type: ADD_INGREDIENT,
+                      name: name,
+                      category: category,
+                    });
                     toggle();
                     setCategory("");
                     setName("");

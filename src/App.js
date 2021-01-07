@@ -5,15 +5,14 @@ import IngredientComponent from "./components/IngredientComponent";
 import MainSite from "./components/MainSite";
 import DishComponent from "./components/DishComponent";
 import NotFound from "./components/NotFound";
-import { IngredientsContext } from "./providers/IngredientProvider";
+import { IngredientsProvider } from "./providers/IngredientProvider";
 
 function App() {
-  const { ingredients } = useContext(IngredientsContext);
+  /*
+  const { ingredients, maxIngredientsCount } = useContext(IngredientsContext);
   const [ingredientsList, setIngredientsList] = useState(ingredients);
 
-  const copyMultidimensionalArray = (arr) => {
-    return JSON.parse(JSON.stringify(arr));
-  };
+  const [addedIngredients, setAddedIngredients] = useState([]);
 
   const AddIngredient = (name, category) => {
     let arr = copyMultidimensionalArray(ingredientsList);
@@ -25,14 +24,26 @@ function App() {
     arr.splice(index, 1);
     setIngredientsList(arr);
   };
+
+  const AddIngredientToOrder = (ingredient) => {
+    let arr = copyMultidimensionalArray(addedIngredients);
+    let add = true;
+    arr.forEach((element) => {
+      if (element.category === ingredient.category) {
+        add = false;
+      }
+    });
+    if (add & (addedIngredients.length > maxIngredientsCount)) {
+      arr.push(ingredient);
+      setAddedIngredients(arr);
+      console.log(arr);
+    } else {
+      console.log("Už to tam je");
+    }
+  };
+*/
   return (
-    <IngredientsContext.Provider
-      value={{
-        ingredients: ingredientsList,
-        AddIngredient: AddIngredient,
-        RemoveIngredient: RemoveIngredient,
-      }}
-    >
+    <IngredientsProvider>
       <Router>
         <Switch>
           <Route exact path="/order/pizza" component={DishComponent} />
@@ -42,7 +53,7 @@ function App() {
           <Route component={NotFound} />
         </Switch>
       </Router>
-    </IngredientsContext.Provider>
+    </IngredientsProvider>
   );
 }
 
