@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import NavbarLayout from "./NavbarLayout";
 import {
   Container,
@@ -10,11 +10,9 @@ import {
   Col,
 } from "reactstrap";
 import { useHistory } from "react-router-dom";
-import { IngredientsContext } from "../providers/IngredientProvider";
 const MainSite = () => {
   const history = useHistory();
-  const [state, dispatch] = useContext(IngredientsContext);
-  console.log(state);
+
   return (
     <>
       <NavbarLayout />

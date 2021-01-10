@@ -10,7 +10,10 @@ import {
 import {
   IngredientsContext,
   REMOVE_INGREDIENT,
-  ADD_TO_ORDER,
+  ADD_TO_ORDER_PIZZA,
+  ADD_TO_ORDER_CALZONE,
+  REMOVE_FROM_ORDER_PIZZA,
+  REMOVE_FROM_ORDER_CALZONE,
 } from "../providers/IngredientProvider";
 const IngredientItem = (props) => {
   const [state, dispatch] = useContext(IngredientsContext);
@@ -40,13 +43,44 @@ const IngredientItem = (props) => {
                 Remove
               </Button>
             </>
+          ) : (props.mode === "show") & (props.added === "pizza") ? (
+            <Col>
+              <Button
+                color="danger"
+                onClick={() =>
+                  dispatch({
+                    type: REMOVE_FROM_ORDER_PIZZA,
+                    index: props.index,
+                  })
+                }
+              >
+                Remove
+              </Button>
+            </Col>
+          ) : (props.mode === "show") & (props.added === "calzone") ? (
+            <Col>
+              <Button
+                color="danger"
+                onClick={() =>
+                  dispatch({
+                    type: REMOVE_FROM_ORDER_CALZONE,
+                    index: props.index,
+                  })
+                }
+              >
+                Remove
+              </Button>
+            </Col>
           ) : (
             <Col>
               <Button
                 color="success"
                 onClick={() =>
                   dispatch({
-                    type: ADD_TO_ORDER,
+                    type:
+                      props.dish === "pizza"
+                        ? ADD_TO_ORDER_PIZZA
+                        : ADD_TO_ORDER_CALZONE,
                     name: props.name,
                     category: props.category,
                   })

@@ -1,10 +1,8 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
 import NavbarLayout from "./NavbarLayout";
 import { Button, Container, Row, Col } from "reactstrap";
-
+import { Link } from "react-router-dom";
 const NotFound = (props) => {
-  const history = useHistory();
   return (
     <>
       <NavbarLayout />
@@ -19,15 +17,10 @@ const NotFound = (props) => {
         </Row>
         <Row>
           <Col>
-            <Button
-              color="danger"
-              onClick={() => {
-                history.push("/");
-              }}
-              style={{ marginTop: "10px" }}
-              size="lg"
-            >
-              Zpět na hlavní stránku
+            <Button color="danger" style={{ marginTop: "10px" }} size="lg">
+              <Link to="/" style={{ color: "white", textUnderline: "none" }}>
+                Zpět na hlavní stránku
+              </Link>
             </Button>
           </Col>
         </Row>
