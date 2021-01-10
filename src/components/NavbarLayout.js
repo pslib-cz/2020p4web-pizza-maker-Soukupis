@@ -10,22 +10,32 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "reactstrap";
+
+import { Link } from "react-router-dom";
 const NavbarLayout = () => {
   return (
     <Navbar color="faded" light expand="md" style={{ fontSize: "20pt" }}>
       <NavbarBrand href="/"></NavbarBrand>
       <Nav className="mr-auto" navbar>
         <NavItem>
-          <NavLink href="/">Home</NavLink>
+          <NavLink to="/" tag={Link}>
+            Home
+          </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="/order/pizza">Pizza</NavLink>
+          <NavLink to="/order/pizza" tag={Link}>
+            Pizza
+          </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="/order/calzone">Calzone</NavLink>
+          <NavLink to="/order/calzone" tag={Link}>
+            Calzone
+          </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="/Ingredients">Ingredients</NavLink>
+          <NavLink to="/ingredients" tag={Link}>
+            Ingredients
+          </NavLink>
         </NavItem>
         <UncontrolledDropdown nav inNavbar>
           <DropdownToggle nav caret>

@@ -10,6 +10,7 @@ import {
 import {
   IngredientsContext,
   REMOVE_INGREDIENT,
+  ADD_TO_ORDER,
 } from "../providers/IngredientProvider";
 const IngredientItem = (props) => {
   const [state, dispatch] = useContext(IngredientsContext);
@@ -42,14 +43,14 @@ const IngredientItem = (props) => {
           ) : (
             <Col>
               <Button
-              /*
+                color="success"
                 onClick={() =>
-                  AddIngredientToOrder({
+                  dispatch({
+                    type: ADD_TO_ORDER,
                     name: props.name,
                     category: props.category,
                   })
                 }
-                color="success"*/
               >
                 Add
               </Button>

@@ -2,7 +2,7 @@ import React, { createContext, useReducer } from "react";
 
 export const ADD_INGREDIENT = "ADD_INGREDIENT";
 export const REMOVE_INGREDIENT = "REMOVE_INGREDIENT";
-
+export const ADD_TO_ORDER = "ADD_TO_ORDER";
 const initialState = {
   ingredients: [
     { name: "pork cut", category: "meat" },
@@ -10,6 +10,7 @@ const initialState = {
     { name: "chicken", category: "meat" },
   ],
   maxIngredientsCount: 4,
+  currentOrder: [],
 };
 const copyMultidimensionalArray = (arr) => {
   return JSON.parse(JSON.stringify(arr));
@@ -19,13 +20,9 @@ const ingredientsReducer = (state, action) => {
   switch (action.type) {
     case ADD_INGREDIENT: {
       console.log(action);
-      return {
-        ...state,
-        ingredients: [
-          ...state.ingredients,
-          { name: action.name, category: action.category },
-        ],
-      };
+      let arr = copyMultidimensionalArray(state);
+      arr.ingredients.push({ name: action.name, category: action.category });
+      return arr;
     }
     case REMOVE_INGREDIENT: {
       return {
@@ -35,6 +32,12 @@ const ingredientsReducer = (state, action) => {
           ...state.ingredients.slice(action.index + 1),
         ],
       };
+    }
+    case ADD_TO_ORDER: {
+      console.log(action);
+      let arr = copyMultidimensionalArray(state);
+      arr.currentOrder.push({ name: action.name, category: action.category });
+      return arr;
     }
   }
 };
